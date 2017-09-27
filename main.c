@@ -6,13 +6,13 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:05:49 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/27 11:56:17 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/09/27 15:23:13 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static volatile char	g_err = 0;
+static volatile char	g_err;
 
 int		main(int ac, char **av, char **env)
 {
