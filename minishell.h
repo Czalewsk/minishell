@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/24 17:17:18 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/09/27 16:54:47 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 # include "./libft/libft.h"
 # include <unistd.h>
 # include <sys/types.h>
+# include <sys/signal.h>
 
 #endif
