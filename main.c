@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/24 17:17:18 by czalewsk         ###   ########.fr       */
+/*   Created: 2017/09/24 17:05:49 by czalewsk          #+#    #+#             */
+/*   Updated: 2017/09/24 17:19:59 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __MINISHELL_H
-# define __MINISHELL_H
+#include "minishell.h"
 
-# include "./libft/libft.h"
-# include <unistd.h>
-# include <sys/types.h>
+int		main(int ac, char **av, char **env)
+{
+	pid_t	father;
 
-#endif
+	if (ac <= 1)
+		ft_printf("Pas de paramatres...\n");
+	else
+	{
+		father = fork();
+		if (father > 0)
+		{
+			execve(av[1], av + 1, env);
+		}
+		else if (!father)
+		{
+			wait(NULL);
+		}
+	}
+}
