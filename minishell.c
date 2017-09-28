@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/28 18:43:32 by czalewsk         ###   ########.fr       */
+/*   Created: 2017/09/28 17:54:15 by czalewsk          #+#    #+#             */
+/*   Updated: 2017/09/28 18:08:26 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __MINISHELL_H
-# define __MINISHELL_H
+#include "minishell.h"
 
-# include "./libft/libft.h"
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/signal.h>
-# include <sys/wait.h>
-# include <limits.h>
+int		main(int ac, char **av, char **env)
+{
 
-#endif
+}
