@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/30 20:37:42 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/09/30 22:07:44 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,30 @@
 # include <sys/signal.h>
 # include <sys/wait.h>
 # include <limits.h>
+# include <signal.h>
 
 # define PROMPT "$>"
 
 extern volatile char	g_prpt_display;
+
+typedef struct		s_ms_builtin
+{
+	char	name[20];
+	void	*f;
+}					t_ms_builtin;
 
 void			ms_init_sgnl_hdlr(void);
 void			ms_env_init(char ***env);
 char			ms_print_prompt(char ***env);
 char			ms_read_line(char **line);
 char			***ms_interpreter(char **line);
-void			ms_execute(char ***cmd, char **env);
+void			ms_execute(char ***cmd, char ***env);
 void			ms_print_exit_status(unsigned char ret);
-char			ms_check_is_builtin(char **cmd, char **env);
-void			ms_builtin_wrap(char **exec, char **env);
-char			ms_check_bin(char **exec, char **env);
-unsigned char	ms_exec_bin(char **exec, char **env);
+void			*ms_check_is_builtin(char *cmd);
+char			*ms_check_bin(char *exec, char **env);
+unsigned char	ms_exec_bin(char **exec, char ***env);
+char			*ms_env_value(char *name, int size_name, char **env);
+
+unsigned char	ms_bt_exit(char **cmd, char ***env);
 
 #endif

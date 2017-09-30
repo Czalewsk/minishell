@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:36:14 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/30 20:13:13 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/09/30 21:04:57 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ int				main(int ac, char **av, char **env)
 			break ;
 		g_prpt_display = 0;
 		if ((cmd = ms_interpreter(&line)))
-				ms_execute(cmd, env);
+				ms_execute(cmd, &env);
 	}
 }

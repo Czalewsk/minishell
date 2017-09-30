@@ -6,7 +6,7 @@
 /*   By: czalewsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 14:37:53 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/29 10:17:42 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/09/30 22:12:33 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void			ft_lst_pushend(t_list **alst, t_list *new);
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 size_t			ft_lstlen(t_list *lst);
 t_list			*ft_lst_newstr(char *str);
-t_list			**ft_strsplit_lst(char const *s, char c);
+t_list			*ft_strsplit_lst(char const *s, char c);
 void			*ft_memdup(const void *mem, size_t size);
 int				ft_square(int nb);
 void			ft_lst_remove_if(t_list **alst, int (*f)(t_list *elem),
