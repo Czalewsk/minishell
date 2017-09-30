@@ -6,13 +6,13 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 17:16:24 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/30 19:14:34 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/09/30 19:49:33 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char		***ms_interpreter(char **line, char **env)
+char		***ms_interpreter(char **line)
 {
 	char	**cmd;
 	int		size;
