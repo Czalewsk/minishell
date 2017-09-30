@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 09:44:24 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/29 17:39:36 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/09/30 17:31:01 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,5 @@ void		ms_env_init(char ***env)
 	size = ft_tablen((void**)*env);
 	tab = ft_memalloc(sizeof(*tab) * (size + 1));
 	while (++i < size)
-	{
 		*(tab + i) = ft_strdup(*(*env + i));
-	}
 }
