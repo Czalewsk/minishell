@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 09:44:24 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 15:54:49 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 19:06:43 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void		ms_free_env(char ***env)
 	while (*(*addr_env + ++i))
 		ft_strdel(*addr_env + i);
 	ft_memdel((void**)addr_env);
+	get_next_line(-2, NULL);
 }
 
 void		ms_env_init(char ***env)

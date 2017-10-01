@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:36:14 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 17:40:03 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 18:37:03 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int				main(int ac, char **av, char **env)
 		if ((cmd = ms_interpreter(&line)))
 		{
 			ms_execute(cmd, &env);
-		//	ms_free_cmd(&cmd);
+			ms_free_cmd(&cmd);
 		}
 	}
 	ms_free_env(NULL);
