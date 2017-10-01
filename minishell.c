@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:36:14 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 16:58:07 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 17:40:03 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				main(int ac, char **av, char **env)
 	ms_env_init(&env);
 	while (av)
 	{
-		g_prpt_display = ms_print_prompt(&env);
+		g_prpt_display = ms_print_prompt();
 		if (!ms_read_line(&line))
 			break ;
 		g_prpt_display = 0;

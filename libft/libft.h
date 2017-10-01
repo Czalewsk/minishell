@@ -6,7 +6,7 @@
 /*   By: czalewsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 14:37:53 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 16:24:40 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 18:31:57 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include "array.h"
+# include "color.h"
 
 # define UC unsigned char
 # define ABS(Value) (Value < 0 ? -Value : Value)

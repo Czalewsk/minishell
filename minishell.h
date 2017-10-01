@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 15:49:28 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 17:54:31 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <limits.h>
 # include <signal.h>
 # include <sys/stat.h>
+# include <fcntl.h>
 
 # define PROMPT "$>"
 
@@ -34,7 +35,7 @@ typedef struct		s_ms_builtin
 
 void			ms_init_sgnl_hdlr(void);
 void			ms_env_init(char ***env);
-char			ms_print_prompt(char ***env);
+char			ms_print_prompt(void);
 char			ms_read_line(char **line);
 char			***ms_interpreter(char **line);
 void			ms_execute(char ***cmd, char ***env);
