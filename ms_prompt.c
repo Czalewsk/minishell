@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 18:22:57 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 21:26:28 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 22:25:36 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ char		ms_print_git(fd)
 	{
 		if ((actual_head = ft_strrchr(line, '/')))
 		{
-			ft_putstr("git:["RED);
+			ft_putstr(" ["RED);
 			ft_putstr(actual_head + 1);
-			ft_putstr(C_DEFAULT"] ");
+			ft_putstr(C_DEFAULT"]");
 		}
 		ft_strdel(&line);
 	}
@@ -86,12 +86,18 @@ void		ms_prompt_git(void)
 
 char		ms_print_prompt(unsigned char ret)
 {
+	char	*path;
+
+	path = NULL;
 	ft_putstr(!ret ? GREEN"➤ "C_DEFAULT : RED"➤ "C_DEFAULT);
 	ft_putstr(T_BOLD BLUE);
 	ms_prompt_get_host();
 	ms_print_time();
+	if ((path = getcwd(path, 0)))
+		ft_putstr(ft_strrchr(path, '/'));
 	ft_putstr(C_DEFAULT);
 	ms_prompt_git();
-	ft_putstr(T_BOLD PROMPT C_DEFAULT);
+	ft_putstr(" " T_BOLD PROMPT C_DEFAULT);
+	ft_strdel(&path);
 	return (1);
 }
