@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 21:44:34 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 14:50:46 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 15:41:49 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ char		*ms_check_bin(char *exec, char **env)
 	if (!(list_path = ms_get_all_path(env)))
 		return (NULL);
 	cur = list_path;
+	error = 0;
 	while (cur)
 	{
 		path = ft_strxjoin(3, cur->content, "/", exec);
