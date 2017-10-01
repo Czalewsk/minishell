@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 17:54:31 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 19:09:09 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <signal.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <termios.h>
 
 # define PROMPT "$>"
 
