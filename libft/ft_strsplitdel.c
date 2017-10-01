@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_builtin.c                                       :+:      :+:    :+:   */
+/*   ft_strsplitdel.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/30 21:01:28 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 16:27:09 by czalewsk         ###   ########.fr       */
+/*   Created: 2017/10/01 16:21:39 by czalewsk          #+#    #+#             */
+/*   Updated: 2017/10/01 16:23:50 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void		*ms_check_is_builtin(char *cmd)
+void		ft_strsplitdel(char ***tab)
 {
-	const t_ms_builtin	list_bt[] = {{ "exit", &ms_bt_exit}, {"", NULL}};
-	int					i;
+	int		i;
+	char	**tmp;
 
+	if (!tab || !(tmp = *tab))
+		return ;
 	i = -1;
-	if (!cmd)
-		return (NULL);
-	while (list_bt[++i].f)
-		if (!ft_strcmp(cmd, list_bt[i].name))
-			return (list_bt[i].f);
-	return (NULL);
+	while (*(tmp + ++i))
+		ft_strdel(tmp + i);
+	ft_memdel((void**)tab);
 }

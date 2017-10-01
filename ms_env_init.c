@@ -6,11 +6,27 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 09:44:24 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/30 17:31:01 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 15:54:49 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void		ms_free_env(char ***env)
+{
+	static	char	***addr_env;
+	int				i;
+
+	if (!addr_env)
+	{
+		addr_env = env;
+		return ;
+	}
+	i = -1;
+	while (*(*addr_env + ++i))
+		ft_strdel(*addr_env + i);
+	ft_memdel((void**)addr_env);
+}
 
 void		ms_env_init(char ***env)
 {
@@ -23,4 +39,6 @@ void		ms_env_init(char ***env)
 	tab = ft_memalloc(sizeof(*tab) * (size + 1));
 	while (++i < size)
 		*(tab + i) = ft_strdup(*(*env + i));
+	*env = tab;
+	ms_free_env(env);
 }

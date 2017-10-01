@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 20:01:39 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 15:39:49 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 15:44:37 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			ms_execute(char ***cmd, char ***env)
 			f(exec, env);
 		else if ((path = ms_check_bin(*exec, *env)))
 		{
-		 if ((ret = ms_exec_bin(path, exec, env)))
+			if ((ret = ms_exec_bin(path, exec, env)))
 				ms_print_exit_statut(*exec, ret);
 		}
 		else
