@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/30 22:07:44 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 15:04:18 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/wait.h>
 # include <limits.h>
 # include <signal.h>
+# include <sys/stat.h>
 
 # define PROMPT "$>"
 
@@ -40,7 +41,7 @@ void			ms_execute(char ***cmd, char ***env);
 void			ms_print_exit_status(unsigned char ret);
 void			*ms_check_is_builtin(char *cmd);
 char			*ms_check_bin(char *exec, char **env);
-unsigned char	ms_exec_bin(char **exec, char ***env);
+unsigned char	ms_exec_bin(char *path, char **exec, char ***env);
 char			*ms_env_value(char *name, int size_name, char **env);
 
 unsigned char	ms_bt_exit(char **cmd, char ***env);

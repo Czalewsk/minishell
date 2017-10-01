@@ -6,7 +6,7 @@
 #    By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/16 13:16:18 by czalewsk          #+#    #+#              #
-#    Updated: 2017/09/29 10:17:29 by czalewsk         ###   ########.fr        #
+#    Updated: 2017/10/01 14:49:06 by czalewsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -141,7 +141,8 @@ OBJ = ft_strlen.o			\
 	  ft_abs.o				\
 	  ft_cpy_until_r.o		\
 	  ft_cpy_until.o		\
-	  ft_tablen.o
+	  ft_tablen.o			\
+	  ft_strxjoin.o
 
 
 all : $(NAME)

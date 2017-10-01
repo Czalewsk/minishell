@@ -6,7 +6,7 @@
 /*   By: czalewsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 14:37:53 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/30 22:12:33 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 14:48:32 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,6 @@ size_t			ft_abs(long a, long b);
 char			*ft_cpy_until_r(char *s, const char *cpy, char c, int n);
 char			*ft_cpy_until(char *s, const char *cpy, char c, int n);
 int				ft_tablen(void **tab);
+char			*ft_strxjoin(int nb_elemt, ...);
 
 #endif
