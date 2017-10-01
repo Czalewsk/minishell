@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 09:37:50 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/30 16:13:09 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 15:29:42 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		ms_signal_sigint(int sig)
 		ft_putendl_fd("Error in signal fucntion\n", 2);
 }
 
-void		ms_signal_hdlr(void)
+void		ms_init_sgnl_hdlr(void)
 {
 	if (signal(SIGINT, ms_signal_sigint) == SIG_ERR)
 		ft_putendl_fd("Error in signal fucntion\n", 2);
