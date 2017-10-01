@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:36:14 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 20:55:10 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 21:53:08 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int				main(int ac, char **av, char **env)
 {
 	char			*line;
 	char			***cmd;
+	unsigned char	ret;
+	t_ms_process	info;
 
 	if (ac > 1)
 		return(print_usage(*av));
@@ -51,15 +53,17 @@ int				main(int ac, char **av, char **env)
 	ms_env_init(&env);
 	while (av)
 	{
-		g_prpt_display = ms_print_prompt();
+		g_prpt_display = ms_print_prompt(ret);
 		if (!ms_read_line(&line))
 			break ;
 		g_prpt_display = 0;
 		if ((cmd = ms_interpreter(&line)))
 		{
-			ms_execute(cmd, &env);
+			ret = ms_execute(cmd, &env, &info);
 			ms_free_cmd(&cmd);
 		}
+		else
+			ret = -1;
 	}
 	ms_free_env(NULL);
 	return (0);

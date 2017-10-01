@@ -6,27 +6,42 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 20:01:39 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 17:07:11 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 22:16:52 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void			ms_print_exit_statut(char *exec, unsigned char status)
+unsigned char	ms_print_exit_statut(char *exec, unsigned char status,
+		t_ms_process *info)
 {
-	ft_printf("%lu %u %s\n", status, WTERMSIG(status), exec);
+	int ret;
+
+	ret = info->ret;
+	if (WIFEXITED(ret) && WEXITSTATUS(ret) != UCHAR_MAX)
+		return (status);
+	else if (WEXITSTATUS(ret) == UCHAR_MAX)
+	{
+		ft_putstr_fd("Minishell: Fail to execve: ", 2);
+		ft_putendl_fd(exec, 2);
+	}
+	else
+		ft_printf("Process[%lu] killed by signal:%u  %s\n",
+				info->pid, WTERMSIG(info->ret), exec);
+	return (status);
 }
 
-void			ms_print_cmd_not_found(char *name)
+unsigned char	ms_print_cmd_not_found(char *name)
 {
 	ft_putstr_fd("minishell: command not found: ", 2);
 	ft_putendl_fd(name, 2);
+	return (1);
 }
 
-unsigned char	ms_exec_bin(char *path, char **exec, char ***env)
+unsigned char	ms_exec_bin(char *path, char **exec, char ***env,
+		t_ms_process *info)
 {
-	pid_t		father;
-	int			ret;
+	pid_t			father;
 
 	father = fork();
 	if (!father)
@@ -35,12 +50,11 @@ unsigned char	ms_exec_bin(char *path, char **exec, char ***env)
 		exit (-1);
 	}
 	else if (father > 0)
-		wait(&ret);
-	return (WIFEXITED(ret) && WEXITSTATUS(ret) != UCHAR_MAX &&
-			!WIFSIGNALED(ret) ? 0 : ret);
+		info->pid = wait(&info->ret);
+	return (WIFEXITED(info->ret) ? WEXITSTATUS(info->ret) : 1);
 }
 
-void			ms_execute(char ***cmd, char ***env)
+unsigned char	ms_execute(char ***cmd, char ***env, t_ms_process *info)
 {
 	int				i;
 	char			**exec;
@@ -49,18 +63,20 @@ void			ms_execute(char ***cmd, char ***env)
 	unsigned char	(*f)(char **, char ***);
 
 	i = -1;
+	ret = 0;
 	while ((exec = *(cmd + ++i)))
 	{
 		if (!*exec)
-			(void)exec;
+			ret = 0;
 		else if ((f = ms_check_is_builtin(*exec)))
-			f(exec, env);
+			ret = f(exec, env);
 		else if ((path = ms_check_bin(*exec, *env)))
 		{
-			if ((ret = ms_exec_bin(path, exec, env)))
-				ms_print_exit_statut(*exec, ret);
+			if ((ret = ms_exec_bin(path, exec, env, info)))
+				ret = ms_print_exit_statut(*exec, ret, info);
 		}
 		else
-			ms_print_cmd_not_found(*exec);
+			ret = ms_print_cmd_not_found(*exec);
 	}
+	return (ret);
 }
