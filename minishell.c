@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:36:14 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 20:54:11 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/01 20:55:10 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,6 @@ int			print_usage(char *name)
 	ft_putstr(name);
 	ft_putendl(": No parameters needed");
 	return (1);
-}
-
-void			ms_init_term(void)
-{
-	struct termios		info;
-	char				*name;
-	int					tty;
-
-	if (!(name = ttyname(0)))
-		return ;
-	if ((tty = open(name, O_RDWR)) <= 0)
-		return ;
-	tcgetattr(tty, &info);
-	info.c_lflag &= ~(ECHOCTL);
-	ft_putstr("Done:");
-	ft_putnbr(tcsetattr(tty, TCSANOW, &info));
 }
 
 void			ms_free_cmd(char ****cmd)
@@ -63,7 +47,6 @@ int				main(int ac, char **av, char **env)
 
 	if (ac > 1)
 		return(print_usage(*av));
-	ms_init_term();
 	ms_init_sgnl_hdlr();
 	ms_env_init(&env);
 	while (av)
