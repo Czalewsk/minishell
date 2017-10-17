@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_bt_exit.c                                       :+:      :+:    :+:   */
+/*   ms_bt_echo.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/30 21:22:00 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/17 15:29:02 by czalewsk         ###   ########.fr       */
+/*   Created: 2017/10/17 15:13:25 by czalewsk          #+#    #+#             */
+/*   Updated: 2017/10/17 17:26:44 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-unsigned char	ms_bt_exit(char **cmd, char ***env)
+unsigned char	ms_bt_echo(char **cmd, char ***env)
 {
-	char	*param;
-	(void)cmd;
-	(void)env;
+	int		i;
+	char	nl;
+	int		len;
 
-	param = *(cmd + 1);
-	if (ft_tablen((void**)cmd) > 2)
+	(void)env;
+	len = 0;
+	nl = 1;
+	i = 1;
+	len = ft_tablen((void**)cmd);
+	if (len > 2 && !ft_strcmp(*(cmd + 1), "-n"))
 	{
-		ft_putendl_fd("exit: too many arguments", 2);
-		return (1);
+		i++;
+		nl = 0;
 	}
-	ms_free_env(NULL);
-	ms_free_cmd(NULL);
-	exit(ft_atoi(param));
+	while (i < len)
+	{
+		ft_putstr(*(cmd + i++));
+		i < len ? write(1, " xd", 3) : 0;
+	}
+	nl ? write(1, "\n", 1) : 0;
+	return (0);
 }

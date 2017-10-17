@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 21:01:28 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 16:27:09 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/17 16:47:22 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void		*ms_check_is_builtin(char *cmd)
 {
-	const t_ms_builtin	list_bt[] = {{ "exit", &ms_bt_exit}, {"", NULL}};
+	const t_ms_builtin	list_bt[] = {{ "exit", &ms_bt_exit},
+		{"echo", &ms_bt_echo}, {"", NULL}};
 	int					i;
 
 	i = -1;

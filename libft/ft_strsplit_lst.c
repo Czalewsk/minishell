@@ -6,7 +6,7 @@
 /*   By: czalewsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/14 16:36:55 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/09/30 22:12:20 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/17 12:21:04 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_list			*ft_strsplit_lst(char const *s, char c)
 {
 	t_list		*start;
 	size_t		i;
+	char		*tmp;
 
 	i = 0;
 	if (!s || !c)
@@ -33,11 +34,13 @@ t_list			*ft_strsplit_lst(char const *s, char c)
 	start = NULL;
 	while (s[i])
 	{
-		if (i == 0 && s[i] != c)
-			ft_lst_pushend(&start, ft_lst_newstr(ft_split_word(&(s[i]), c)));
-		else if (i != 0 && s[i] != c && s[i - 1] == c)
-			ft_lst_pushend(&start, ft_lst_newstr(ft_split_word(&(s[i]), c)));
+		if (i == 0 && s[i] != c && (tmp = ft_split_word((s + i), c)))
+			ft_lst_pushend(&start, ft_lstnew(tmp, ft_strlen(tmp) + 1));
+		else if (i != 0 && s[i] != c && s[i - 1] == c
+				&& (tmp = ft_split_word((s + i), c) ))
+			ft_lst_pushend(&start, ft_lstnew(tmp, ft_strlen(tmp) + 1));
 		i++;
+		ft_strdel(&tmp);
 	}
 	return (start);
 }

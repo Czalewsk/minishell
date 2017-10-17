@@ -6,7 +6,7 @@
 /*   By: czalewsk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/14 17:11:37 by czalewsk          #+#    #+#             */
-/*   Updated: 2016/11/28 10:36:37 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/17 11:03:29 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list		*ft_lst_newstr(char *str)
 
 	if (!str)
 		return (NULL);
-	new = ft_lstnew(str, ft_strlen(str) + 1);
+	new = ft_lstnew(&str, sizeof(char*));
 	new->next = NULL;
 	return (new);
 }

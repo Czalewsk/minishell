@@ -6,7 +6,7 @@
 #    By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/19 08:42:40 by czalewsk          #+#    #+#              #
-#    Updated: 2017/10/01 15:20:04 by czalewsk         ###   ########.fr        #
+#    Updated: 2017/10/17 16:47:40 by czalewsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ FLAGS = -Wall -Werror -Wextra -g
 OBJS = $(SRCS:.c=.o)
 SRCS = minishell.c ms_bin.c ms_bt_exit.c ms_builtin.c ms_env_init.c \
 	   ms_env_value.c ms_execute.c ms_interpreter.c ms_prompt.c ms_read_line.c \
-	   ms_signal_hdlr.c
+	   ms_signal_hdlr.c ms_bt_echo.c
 
 INCLUDES = -I ./libft
 

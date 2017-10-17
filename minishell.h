@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 22:12:10 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/17 16:46:32 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ unsigned char	ms_exec_bin(char *path, char **exec, char ***env,
 		t_ms_process *info);
 char			*ms_env_value(char *name, int size_name, char **env);
 void			ms_free_env(char ***env);
+void			ms_free_cmd(char ****cmd);
 
 unsigned char	ms_bt_exit(char **cmd, char ***env);
+unsigned char	ms_bt_echo(char **cmd, char ***env);
 
 #endif

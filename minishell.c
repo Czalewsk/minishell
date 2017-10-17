@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:36:14 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 21:53:08 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/17 12:46:20 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,14 @@ int			print_usage(char *name)
 
 void			ms_free_cmd(char ****cmd)
 {
+	static	char****cmd_cache;
 	char	***tmp;
 	int		i;
 	int		j;
 
+	if (!cmd_cache)
+		cmd_cache = cmd;
+	cmd = cmd_cache;
 	if (!(tmp = *cmd))
 		return ;
 	i = -1;
@@ -47,7 +51,7 @@ int				main(int ac, char **av, char **env)
 	unsigned char	ret;
 	t_ms_process	info;
 
-	if (ac > 1)
+	if (!(ret = 0) && ac > 1)
 		return(print_usage(*av));
 	ms_init_sgnl_hdlr();
 	ms_env_init(&env);

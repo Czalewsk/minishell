@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 20:01:39 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 22:16:52 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/17 12:49:19 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ unsigned char	ms_exec_bin(char *path, char **exec, char ***env,
 	if (!father)
 	{
 		execve(path, exec, *env);
-		exit (-1);
+		exit(-1);
 	}
 	else if (father > 0)
 		info->pid = wait(&info->ret);
@@ -74,6 +74,7 @@ unsigned char	ms_execute(char ***cmd, char ***env, t_ms_process *info)
 		{
 			if ((ret = ms_exec_bin(path, exec, env, info)))
 				ret = ms_print_exit_statut(*exec, ret, info);
+			ft_strdel(&path);
 		}
 		else
 			ret = ms_print_cmd_not_found(*exec);
