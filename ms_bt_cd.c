@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_bt_echo.c                                       :+:      :+:    :+:   */
+/*   ms_bt_cd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/17 15:13:25 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/17 17:45:57 by czalewsk         ###   ########.fr       */
+/*   Created: 2017/10/17 17:45:17 by czalewsk          #+#    #+#             */
+/*   Updated: 2017/10/17 19:12:51 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-unsigned char	ms_bt_echo(char **cmd, char ***env)
+unsigned char	ms_bt_cd(char **cmd, char ***env)
 {
-	int		i;
-	char	nl;
-	int		len;
+	int				len;
+	unsigned char	ret;
 
 	(void)env;
-	len = 0;
-	nl = 1;
-	i = 1;
 	len = ft_tablen((void**)cmd);
-	if (len > 2 && !ft_strcmp(*(cmd + 1), "-n"))
+	if (len > 2)
 	{
-		i++;
-		nl = 0;
+		ft_putstr_fd("cd: string not in pwd: ", 2);
+		ft_putendl_fd(*(cmd + 1), 2);
+		return (1);
 	}
-	while (i < len)
+	if ((ret = (len == 1) ? chdir("/") : chdir(*(cmd + 1))))
 	{
-		ft_putstr(*(cmd + i++));
-		i < len ? write(1, " ", 1) : 0;
+		if (access(*(cmd + 1), X_OK))
+			ft_putstr_fd("cd: permission denied: ", 2);
+		else
+			ft_putstr_fd("cd: no such file or directory: ", 2);
+		ft_putendl_fd(*(cmd + 1), 2);
 	}
-	nl ? write(1, "\n", 1) : 0;
-	return (0);
+	return (ret);
 }

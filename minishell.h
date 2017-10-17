@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/17 16:46:32 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/17 17:52:06 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void			ms_free_cmd(char ****cmd);
 
 unsigned char	ms_bt_exit(char **cmd, char ***env);
 unsigned char	ms_bt_echo(char **cmd, char ***env);
+unsigned char	ms_bt_cd(char **cmd, char ***env);
 
 #endif
