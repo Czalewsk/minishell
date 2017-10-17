@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 20:01:39 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/17 12:49:19 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/17 20:42:11 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,30 +54,37 @@ unsigned char	ms_exec_bin(char *path, char **exec, char ***env,
 	return (WIFEXITED(info->ret) ? WEXITSTATUS(info->ret) : 1);
 }
 
-unsigned char	ms_execute(char ***cmd, char ***env, t_ms_process *info)
+unsigned char	ms_execute(char **exec, char ***env)
+{
+	char			*path;
+	unsigned char	(*f)(char **, char ***);
+	unsigned char	ret;
+	t_ms_process	info;
+
+	if (!*exec)
+		ret = 0;
+	else if ((f = ms_check_is_builtin(*exec)))
+		ret = f(exec, env);
+	else if ((path = ms_check_bin(*exec, (env) ? *env : NULL)))
+	{
+		if ((ret = ms_exec_bin(path, exec, env, &info)))
+			ret = ms_print_exit_statut(*exec, ret, &info);
+		ft_strdel(&path);
+	}
+	else
+		ret = ms_print_cmd_not_found(*exec);
+	return (ret);
+}
+
+unsigned char	ms_mult_execute(char ***cmd, char ***env)
 {
 	int				i;
 	char			**exec;
-	char			*path;
 	unsigned char	ret;
-	unsigned char	(*f)(char **, char ***);
 
 	i = -1;
-	ret = 0;
-	while ((exec = *(cmd + ++i)))
-	{
-		if (!*exec)
-			ret = 0;
-		else if ((f = ms_check_is_builtin(*exec)))
-			ret = f(exec, env);
-		else if ((path = ms_check_bin(*exec, *env)))
-		{
-			if ((ret = ms_exec_bin(path, exec, env, info)))
-				ret = ms_print_exit_statut(*exec, ret, info);
-			ft_strdel(&path);
-		}
-		else
-			ret = ms_print_cmd_not_found(*exec);
-	}
+	ret = 1;
+	while ((cmd + ++i) && (exec = *(cmd + i)))
+		ret = ms_execute(exec, env);
 	return (ret);
 }
