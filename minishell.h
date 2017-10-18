@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 12:36:42 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 14:50:21 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ unsigned char			ms_bt_env(char **cmd, char ***env);
 void					ms_env_add(char ***env, char *key, char *value);
 unsigned char			ms_bt_setenv(char **cmd, char ***env);
 void					ms_env_mod(char ***env, char *key, char *value);
+unsigned char			ms_bt_unsetenv(char **cmd, char ***env);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/19 08:42:40 by czalewsk          #+#    #+#              #
-#    Updated: 2017/10/18 12:37:31 by czalewsk         ###   ########.fr        #
+#    Updated: 2017/10/18 14:49:30 by czalewsk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ OBJS = $(SRCS:.c=.o)
 SRCS = minishell.c ms_bin.c ms_bt_exit.c ms_builtin.c ms_env_init.c \
 	   ms_env_value.c ms_execute.c ms_interpreter.c ms_prompt.c ms_read_line.c \
 	   ms_signal_hdlr.c ms_bt_echo.c ms_bt_cd.c ms_bt_env.c ms_env_add.c \
-	   ms_bt_setenv.c ms_env_mod.c
+	   ms_bt_setenv.c ms_env_mod.c ms_bt_unsetenv.c
 
 INCLUDES = -I ./libft
 
