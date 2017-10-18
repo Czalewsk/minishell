@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 14:50:21 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 19:19:45 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define PROMPT "$> "
 
 extern volatile char	g_prpt_display;
+extern volatile char	g_prpt_already;
 
 typedef struct			s_ms_builtin
 {

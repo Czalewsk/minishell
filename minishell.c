@@ -6,13 +6,14 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:36:14 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 18:49:25 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 19:23:57 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 volatile char	g_prpt_display = 0;
+volatile char	g_prpt_already = 0;
 
 int				print_usage(char *name)
 {
@@ -65,7 +66,7 @@ int				main(int ac, char **av, char **env)
 	while (av)
 	{
 		g_prpt_display = ms_print_prompt(ret);
-		if (!ms_read_line(&line))
+		if (!ms_read_line(&line) && write(1, "\n", 1))
 			break ;
 		g_prpt_display = 0;
 		if ((cmd = ms_interpreter(&line)))

@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 09:37:50 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 10:20:10 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 19:22:17 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 void		ms_signal_sigint(int sig)
 {
 	(void)sig;
-	write(1, "\n", 1);
-	g_prpt_display ? ms_print_prompt(1) : 0;
+	if (!g_prpt_already)
+	{
+		write(1, "\n", 1);
+		g_prpt_display ? ms_print_prompt(1) : 0;
+	}
 }
 
 void		ms_init_sgnl_hdlr(void)
