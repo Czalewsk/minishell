@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 12:30:03 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 12:44:23 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 12:47:30 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		ms_env_mod(char ***env, char *key, char *value)
 		if (ft_strcmp(line, key) == '=' && *(line + size_key) == '=')
 		{
 			ft_memdel((void**)*env + i);
-			*(*env + i) = ft_strxjoin(3, key, "=", value);
+			*(*env + i) = ft_strxjoin(3, key, "=", value ? value : "");
 			break ;
 		}
 	}
