@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 20:01:39 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 10:00:21 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 10:17:25 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ unsigned char	ms_exec_bin(char *path, char **exec, char ***env,
 	father = fork();
 	if (!father)
 	{
-		execve(path, exec, *env);
+		execve(path, exec, (env ? *env : NULL));
 		exit(-1);
 	}
 	else if (father > 0)
@@ -65,6 +65,11 @@ unsigned char	ms_execute(char **exec, char ***env)
 		ret = 0;
 	else if ((f = ms_check_is_builtin(*exec)))
 		ret = f(exec, env);
+	else if (ms_check_exec_path(*exec) == 1)
+	{
+		if ((ret = ms_exec_bin(*exec, exec, env, &info)))
+			ret = ms_print_exit_statut(*exec, ret, &info);
+	}
 	else if ((path = ms_check_bin(*exec, (env) ? *env : NULL)))
 	{
 		if ((ret = ms_exec_bin(path, exec, env, &info)))

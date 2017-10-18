@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 19:16:38 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 09:56:39 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 10:32:35 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static unsigned char	ms_bt_env_print(char ***env)
 
 	i = 0;
 	if (!env || !(*env))
-		return(1);
+		return (1);
 	while (*(*env + i))
 		ft_putendl(*(*env + i++));
 	return (0);
@@ -46,7 +46,5 @@ unsigned char			ms_bt_env(char **cmd, char ***env)
 		}
 	}
 	cmd++;
-	ft_printf("cmd=%s|\n", *cmd);
-	ft_printf("cmd=%s|\n", *(cmd + 1));
-	return(ms_execute(cmd, (noenv) ? NULL : env));
+	return (ms_execute(cmd, (noenv) ? NULL : env));
 }

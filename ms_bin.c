@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 21:44:34 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/17 17:41:55 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 10:03:56 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		ms_bin_error(char *exec)
 	ft_putendl_fd(exec, 2);
 }
 
-static char	ms_check_exec_path(char *path)
+char		ms_check_exec_path(char *path)
 {
 	struct stat		info;
 	int				ret;

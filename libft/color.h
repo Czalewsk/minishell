@@ -6,18 +6,22 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/01 18:31:07 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/01 18:31:45 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 11:33:57 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __COLOR_H
 # define __COLOR_H
 
-/* SET ALL DEFAULT */
+/*
+** SET ALL DEFAULT
+*/
 
 # define C_DEFAULT	"\033[m"
 
-/* TEXT COLOR */
+/*
+** TEXT COLOR
+*/
 
 # define BLACK		"\033[30m"
 # define RED		"\033[31m"
@@ -28,7 +32,9 @@
 # define CYAN		"\033[36m"
 # define WHITE		"\033[37m"
 
-/* ANSI TEXT COLOR */
+/*
+** ANSI TEXT COLOR
+*/
 
 # define X_BLACK	"\033[1;30m"
 # define X_RED		"\033[1;31m"
@@ -39,7 +45,9 @@
 # define X_CYAN		"\033[1;36m"
 # define X_WHITE	"\033[1;37m"
 
-/* FONT COLOR*/
+/*
+** FONT COLOR
+*/
 
 # define F_BLACK	"\033[40m"
 # define F_RED		"\033[41m"
@@ -50,7 +58,9 @@
 # define F_CYAN		"\033[46m"
 # define F_WHITE	"\033[47m"
 
-/* TEXT EDIT */
+/*
+** TEXT EDIT
+*/
 
 # define T_BOLD			"\033[1m"
 # define T_ITALIC		"\033[3m"

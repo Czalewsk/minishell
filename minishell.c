@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:36:14 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 09:54:05 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 10:36:32 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 volatile char	g_prpt_display = 0;
 
-int			print_usage(char *name)
+int				print_usage(char *name)
 {
 	ft_putstr(name);
 	ft_putendl(": No parameters needed");
 	return (1);
 }
 
-static char			****ms_get_cmd(char ****cmd)
+static char		****ms_get_cmd(char ****cmd)
 {
 	static		char ****cmd_cache;
 
@@ -58,7 +58,7 @@ int				main(int ac, char **av, char **env)
 	unsigned char	ret;
 
 	if (!(ret = 0) && ac > 1)
-		return(print_usage(*av));
+		return (print_usage(*av));
 	ms_init_sgnl_hdlr();
 	ms_env_init(&env);
 	ms_get_cmd(&cmd);
