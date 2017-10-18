@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 11:49:09 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 15:25:50 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 15:50:25 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static unsigned char	env_usage(int i)
 	return (1);
 }
 
-unsigned char	ms_bt_setenv(char **cmd, char ***env)
+unsigned char			ms_bt_setenv(char **cmd, char ***env)
 {
 	int		len;
 
 	len = ft_tablen((void**)cmd);
 	if (len < 2 || len > 3)
-		return(env_usage(len > 3 ? 1 : 0));
+		return (env_usage(len > 3 ? 1 : 0));
 	if (!env || !*env)
 		return (0);
 	if (!ms_env_value(*(cmd + 1), ft_strlen(*(cmd + 1)), *env))

@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/18 12:30:03 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 12:47:30 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 15:50:58 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ void		ms_env_mod(char ***env, char *key, char *value)
 		}
 	}
 }
-
