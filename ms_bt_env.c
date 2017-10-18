@@ -6,19 +6,21 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 19:16:38 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/17 20:44:13 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 09:56:39 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static unsigned char	ms_bt_env_print(char **env)
+static unsigned char	ms_bt_env_print(char ***env)
 {
 	int		i;
 
 	i = 0;
-	while (*(env + i))
-		ft_putendl(*(env + i++));
+	if (!env || !(*env))
+		return(1);
+	while (*(*env + i))
+		ft_putendl(*(*env + i++));
 	return (0);
 }
 
@@ -30,7 +32,7 @@ unsigned char			ms_bt_env(char **cmd, char ***env)
 	noenv = 0;
 	len = ft_tablen((void**)cmd);
 	if (len <= 1)
-		return (ms_bt_env_print(*env));
+		return (ms_bt_env_print(env));
 	else if (**(cmd + 1) == '-' && *(*(cmd + 1) + 1))
 	{
 		if (!ft_strcmp(*(cmd + 1), "-i") && (cmd++ || 1))
@@ -44,5 +46,7 @@ unsigned char			ms_bt_env(char **cmd, char ***env)
 		}
 	}
 	cmd++;
+	ft_printf("cmd=%s|\n", *cmd);
+	ft_printf("cmd=%s|\n", *(cmd + 1));
 	return(ms_execute(cmd, (noenv) ? NULL : env));
 }

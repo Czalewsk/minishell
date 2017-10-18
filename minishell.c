@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 19:36:14 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/17 20:38:24 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 09:54:05 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,23 @@ int			print_usage(char *name)
 	return (1);
 }
 
+static char			****ms_get_cmd(char ****cmd)
+{
+	static		char ****cmd_cache;
+
+	if (!cmd_cache)
+		cmd_cache = cmd;
+	return (cmd_cache);
+}
+
 void			ms_free_cmd(char ****cmd)
 {
-	static	char****cmd_cache;
 	char	***tmp;
 	int		i;
 	int		j;
 
-	if (!cmd_cache)
-		cmd_cache = cmd;
-	cmd = cmd_cache;
+	if (!cmd)
+		cmd = ms_get_cmd(NULL);
 	if (!(tmp = *cmd))
 		return ;
 	i = -1;
@@ -54,6 +61,7 @@ int				main(int ac, char **av, char **env)
 		return(print_usage(*av));
 	ms_init_sgnl_hdlr();
 	ms_env_init(&env);
+	ms_get_cmd(&cmd);
 	while (av)
 	{
 		g_prpt_display = ms_print_prompt(ret);

@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 21:22:00 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/17 15:29:02 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 09:47:24 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ unsigned char	ms_bt_exit(char **cmd, char ***env)
 	}
 	ms_free_env(NULL);
 	ms_free_cmd(NULL);
-	exit(ft_atoi(param));
+	exit(param ? ft_atoi(param) : 0);
 }
