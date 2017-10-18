@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_builtin.c                                       :+:      :+:    :+:   */
+/*   ms_env_add.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/30 21:01:28 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 12:23:54 by czalewsk         ###   ########.fr       */
+/*   Created: 2017/10/18 12:13:52 by czalewsk          #+#    #+#             */
+/*   Updated: 2017/10/18 12:36:23 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		*ms_check_is_builtin(char *cmd)
+void		ms_env_add(char ***env, char *key, char *value)
 {
-	const t_ms_builtin	list_bt[] = {{ "exit", &ms_bt_exit},
-		{"echo", &ms_bt_echo}, {"cd", &ms_bt_cd}, {"env", &ms_bt_env},
-		{"setenv", &ms_bt_setenv}, {"", NULL}};
-	int					i;
+	int		len;
+	char	**new;
 
-	i = -1;
-	if (!cmd)
-		return (NULL);
-	while (list_bt[++i].f)
-		if (!ft_strcmp(cmd, list_bt[i].name))
-			return (list_bt[i].f);
-	return (NULL);
+	len = ft_tablen((void**) *env);
+	new = ft_memalloc((len + 2) * sizeof(char**));
+	ft_memcpy(new, *env, len * sizeof(char**));
+	*(new + len) = ft_strxjoin(3, key, "=", value);
+	ft_memdel((void**)env);
+	*env = new;
 }

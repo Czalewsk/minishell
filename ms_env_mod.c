@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ms_builtin.c                                       :+:      :+:    :+:   */
+/*   ms_env_mod.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/09/30 21:01:28 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 12:23:54 by czalewsk         ###   ########.fr       */
+/*   Created: 2017/10/18 12:30:03 by czalewsk          #+#    #+#             */
+/*   Updated: 2017/10/18 12:44:23 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		*ms_check_is_builtin(char *cmd)
+void		ms_env_mod(char ***env, char *key, char *value)
 {
-	const t_ms_builtin	list_bt[] = {{ "exit", &ms_bt_exit},
-		{"echo", &ms_bt_echo}, {"cd", &ms_bt_cd}, {"env", &ms_bt_env},
-		{"setenv", &ms_bt_setenv}, {"", NULL}};
-	int					i;
+	int		i;
+	char	*line;
+	int		size_key;
 
+	if (!env || !*env)
+		return ;
 	i = -1;
-	if (!cmd)
-		return (NULL);
-	while (list_bt[++i].f)
-		if (!ft_strcmp(cmd, list_bt[i].name))
-			return (list_bt[i].f);
-	return (NULL);
+	size_key = ft_strlen(key);
+	while (*(*env + ++i))
+	{
+		line = *(*env + i);
+		if (ft_strcmp(line, key) == '=' && *(line + size_key) == '=')
+		{
+			ft_memdel((void**)*env + i);
+			*(*env + i) = ft_strxjoin(3, key, "=", value);
+			break ;
+		}
+	}
 }
+
