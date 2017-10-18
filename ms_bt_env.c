@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 19:16:38 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 10:32:35 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 11:41:08 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,5 @@ unsigned char			ms_bt_env(char **cmd, char ***env)
 		}
 	}
 	cmd++;
-	return (ms_execute(cmd, (noenv) ? NULL : env));
+	return (ms_execute(cmd, env, (noenv) ? 1 : 0));
 }

@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 20:01:39 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 10:17:25 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 11:44:02 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ unsigned char	ms_exec_bin(char *path, char **exec, char ***env,
 	return (WIFEXITED(info->ret) ? WEXITSTATUS(info->ret) : 1);
 }
 
-unsigned char	ms_execute(char **exec, char ***env)
+unsigned char	ms_execute(char **exec, char ***env, char noenv)
 {
 	char			*path;
 	unsigned char	(*f)(char **, char ***);
@@ -64,15 +64,15 @@ unsigned char	ms_execute(char **exec, char ***env)
 	if (!*exec)
 		ret = 0;
 	else if ((f = ms_check_is_builtin(*exec)))
-		ret = f(exec, env);
+		ret = f(exec, (noenv ? NULL : env));
 	else if (ms_check_exec_path(*exec) == 1)
 	{
 		if ((ret = ms_exec_bin(*exec, exec, env, &info)))
 			ret = ms_print_exit_statut(*exec, ret, &info);
 	}
-	else if ((path = ms_check_bin(*exec, (env) ? *env : NULL)))
+	else if ((path = ms_check_bin(*exec, (env ? *env : NULL))))
 	{
-		if ((ret = ms_exec_bin(path, exec, env, &info)))
+		if ((ret = ms_exec_bin(path, exec, (noenv ? NULL : env), &info)))
 			ret = ms_print_exit_statut(*exec, ret, &info);
 		ft_strdel(&path);
 	}
@@ -90,6 +90,6 @@ unsigned char	ms_mult_execute(char ***cmd, char ***env)
 	i = -1;
 	ret = 1;
 	while ((cmd + ++i) && (exec = *(cmd + i)))
-		ret = ms_execute(exec, env);
+		ret = ms_execute(exec, env, 0);
 	return (ret);
 }

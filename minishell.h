@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/24 17:01:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 11:35:35 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/18 11:39:52 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char					ms_print_prompt(unsigned char ret);
 char					ms_read_line(char **line);
 char					***ms_interpreter(char **line);
 unsigned char			ms_mult_execute(char ***cmd, char ***env);
-unsigned char			ms_execute(char **exec, char ***env);
+unsigned char			ms_execute(char **exec, char ***env, char noenv);
 void					ms_print_exit_status(unsigned char ret);
 void					*ms_check_is_builtin(char *cmd);
 char					*ms_check_bin(char *exec, char **env);
