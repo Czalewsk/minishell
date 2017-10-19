@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 20:01:39 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/19 20:21:36 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/19 21:14:03 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ unsigned char	ms_print_exit_statut(char *exec, unsigned char status,
 		ft_putendl_fd(exec, 2);
 	}
 	else
-		ft_printf("Process[%lu] killed by signal:%u  %s\n",
-				info->pid, WTERMSIG(info->ret), exec);
+		ft_printf("\nProcess: %s [%lu] killed by signal number:(%u)\n",
+				exec, info->pid, WTERMSIG(info->ret));
 	return (status);
 }
 

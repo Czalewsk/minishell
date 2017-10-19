@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:45:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/19 20:18:04 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/19 21:21:48 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ static unsigned char	ms_bt_cd_minus(char *oldpwd)
 {
 	unsigned char	ret;
 
-	if ((ret = chdir(oldpwd)))
+	if (!oldpwd && (ret = 1))
+		ft_putendl_fd("cd: OLDPWD is not set :/", 2);
+	else if ((ret = chdir(oldpwd)))
 		oldpwd && ft_strlen(oldpwd) ? ms_print_error(oldpwd) :
 			ft_putendl_fd("cd: OLDPWD is not set :/", 2);
 	return (ret);
@@ -73,11 +75,11 @@ unsigned char			ms_bt_cd(char **cmd, char ***env)
 		return (1);
 	}
 	if (len > 1 && !ft_strcmp(*(cmd + 1), "-"))
-		ret = ms_bt_cd_minus(ms_env_value("OLDPWD", 6, *env));
+		ret = ms_bt_cd_minus(ms_env_value("OLDPWD", 6, env ? *env : NULL));
 	else if ((len > 1) && (ret = chdir(*(cmd + 1))))
 		ms_print_error(*(cmd + 1));
 	else if (len == 1)
-		ret = ms_bt_cd_home(*env);
+		ret = ms_bt_cd_home(env ? *env : NULL);
 	if (!ret)
 		ms_bt_cd_pwd(env, (len == 1 ? ms_env_value("HOME", 4, *env) :
 					getcwd(path, 0)), ms_env_value("PWD", 3, *env));
