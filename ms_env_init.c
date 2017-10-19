@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/29 09:44:24 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/19 21:25:50 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/19 21:45:27 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void		ms_env_init(char ***env)
 	int		size;
 	int		i;
 	char	**tab;
+	char	*shlvl;
 
 	i = -1;
 	size = (env ? ft_tablen((void**)*env) : 0);
@@ -42,4 +43,12 @@ void		ms_env_init(char ***env)
 		*(tab + i) = ft_strdup(*(*env + i));
 	*env = tab;
 	ms_free_env(env);
+	if ((shlvl = ms_env_value("SHLVL", 5, *env)))
+	{
+		ms_bt_setenv((char*[4]){"setenv", "SHLVL",
+				(shlvl = ft_itoa(ft_atoi(shlvl) + 1))}, env);
+		ft_strdel(&shlvl);
+	}
+	else
+		ms_bt_setenv((char*[4]){"setenv", "SHLVL", "1"}, env);
 }
