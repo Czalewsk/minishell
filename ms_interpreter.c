@@ -6,22 +6,11 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/30 17:16:24 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/18 16:51:23 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/19 20:22:41 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void		ms_trim_tab(char ***tab)
-{
-	int		i;
-
-	i = -1;
-	while (tab && *(tab + ++i))
-	{
-
-	}
-}
 
 char		***ms_interpreter(char **line)
 {
