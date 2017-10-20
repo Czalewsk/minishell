@@ -6,7 +6,7 @@
 /*   By: czalewsk <czalewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/17 17:45:17 by czalewsk          #+#    #+#             */
-/*   Updated: 2017/10/19 21:21:48 by czalewsk         ###   ########.fr       */
+/*   Updated: 2017/10/20 10:08:07 by czalewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ static unsigned char	ms_bt_cd_minus(char *oldpwd)
 	unsigned char	ret;
 
 	if (!oldpwd && (ret = 1))
-		ft_putendl_fd("cd: OLDPWD is not set :/", 2);
+		ft_putendl_fd("cd: OLDPWD is not set.", 2);
 	else if ((ret = chdir(oldpwd)))
 		oldpwd && ft_strlen(oldpwd) ? ms_print_error(oldpwd) :
-			ft_putendl_fd("cd: OLDPWD is not set :/", 2);
+			ft_putendl_fd("cd: OLDPWD is not set.", 2);
 	return (ret);
 }
 
@@ -82,6 +82,7 @@ unsigned char			ms_bt_cd(char **cmd, char ***env)
 		ret = ms_bt_cd_home(env ? *env : NULL);
 	if (!ret)
 		ms_bt_cd_pwd(env, (len == 1 ? ms_env_value("HOME", 4, *env) :
-					getcwd(path, 0)), ms_env_value("PWD", 3, *env));
+					(path = getcwd(path, 0))), ms_env_value("PWD", 3, *env));
+	ft_strdel(&path);
 	return (ret);
 }
